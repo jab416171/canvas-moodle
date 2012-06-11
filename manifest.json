@@ -1,0 +1,17 @@
+{
+    "title": "canvas-moodle",
+    "name": "Bringing moodle features to canvas",
+    "version": "0.1",
+    "description": "The goal of this project is to bring the home page of moodle to canvas.",
+    "content_scripts": [
+        {
+            "matches":[
+                "https://lms.neumont.edu/"
+            ],
+            "js":["js/jquery-1.7.1.min.js", "js/contentscript.js"]
+        }
+    ],
+    "permissions":[
+        "http://playerdex.pokemon-world-online.net/index.php?REG"
+    ]
+}
