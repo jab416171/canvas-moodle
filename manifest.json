@@ -1,8 +1,9 @@
 {
-    "name": "Bringing moodle features to canvas",
-    "version": "0.1",
+    "name": "Canvas to Moodle",
+	"description": "Simplifying your life, with just a simple install.",
+    "version": "1.0",
 	"manifest_version": 2,
-    "description": "The goal of this project is to bring the home page of moodle to canvas.",
+	"icons" : {},
     "content_scripts": [
         {
             "matches":[
@@ -12,6 +13,6 @@
         }
     ],
     "permissions":[
-        "http://playerdex.pokemon-world-online.net/index.php?REG"
+        
     ]
 }

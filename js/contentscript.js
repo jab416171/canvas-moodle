@@ -12,7 +12,6 @@ $(document).ready(function() {
 	}
 	
     function getAssignments() {
-		var key = localStorage["canvasKey"];
 		$.ajax({
 			type: 'GET',
 			url: 'https://lms.neumont.edu/assignments',
@@ -26,12 +25,7 @@ $(document).ready(function() {
 				upcoming.find("div.details").remove();
 				upcoming.find("div.content").append('<hr>');
 				
-				//console.log(upcoming);
-				
 				var firstFive = upcoming.children('div:eq(5)');
-				
-				//console.log("----------------------------------------");
-				//console.log(firstFive);
 				
 				if(firstFive.length == 0){
 					$(".assignment-summary-div").html(upcoming);
@@ -44,11 +38,9 @@ $(document).ready(function() {
 				$(".assignment-summary-div").html("<span style='color: red'>Error retrieving your assignments.</span>");
 			}
 		});
-		
     }
 	
 	function getCalendar() {
-	var key = localStorage["canvasKey"];
 		$.ajax({
 			type: 'GET',
 			url: 'https://lms.neumont.edu/calendar',
@@ -62,7 +54,6 @@ $(document).ready(function() {
 				$(".calendar-div").html("<span style='color: red'>Error retrieving your calendar.</span>");
 			}
 		});
-		
     }
 	
 	function getGrades(){
