@@ -1,8 +1,4 @@
 $(document).ready(function() {
-
-	function login(){
-		
-	}
 	function removeElements(){
 		$("aside#right-side").children('div').remove();
 		$("aside#right-side").children('h2').remove();
@@ -10,34 +6,68 @@ $(document).ready(function() {
 	}
 	
 	function addDivs(){
-		$("aside#right-side").prepend('<div class="events_list"><h2>Upcoming Assignments</h2><div class="assignment-summary-div"></div></div>');
+		$("aside#right-side").prepend('<div id="demo" class="events_list"><div class="assignment-summary-div"></div></div>');
 		$("aside#right-side").prepend('<div class="events_list"><h2>Grade Summary</h2><div class="grade-summary-div"></div></div>');
+		$("aside#right-side").prepend('<div class="calendar"><h2>Calendar</h2><div class="calendar-div"></div></div>');
 	}
 	
-    function auth() {
-		// $.ajax({
-			// type: 'GET',
-			// url: 'https://lms.neumont.edu/api/v1/courses',
-			// data:{
-				// 'client_id' : '5',
-				// 'response_type': 'code',
-				// 'redirect_uri' : 'urn:ietf:wg:oauth:2.0:oob'
-				//'Authorization': 'pVQ51V8VPAnWOrmo8i0Fy1sssV4MIzSy94O103LOZAFuqqe4V40LoM3QowuM4fND'
-			// },
-			// success: function(){
-				// alert('works');
-			// }
-		// });
+    function getAssignments() {
+		var key = localStorage["canvasKey"];
+		$.ajax({
+			type: 'GET',
+			url: 'https://lms.neumont.edu/assignments',
+			data:{
+				'Authorization': key
+			},
+			success: function(data){
+				var response = $(data);
+				var upcoming = response.find(".assignment_list:eq(2)");
+				$(".assignment-summary-div").html(upcoming);
+			},
+			error: function(data){
+				var resp = $(data);
+				$(".assignment-summary-div").html("<h2>Upcoming Assignments</h2><span style='color: red'>Error retrieving your assignments.</span>");
+				//alert(resp + 'There was an error trying to retrieve your assignments');
+			}
+		});
 		
     }
 	
-	function getInfo(){
-		$(".grade-summary-div").load("grades .course_details");
-		$(".assignment-summary-div").load("assignments div.assignment_list");
+	function getCalendar() {
+	var key = localStorage["canvasKey"];
+		$.ajax({
+			type: 'GET',
+			url: 'https://lms.neumont.edu/calendar',
+			data:{
+				'Authorization': key
+			},
+			success: function(data){
+				var response = $(data);
+				var upcoming = response.find(".mini_month");
+				$(".calendar-div").html(upcoming);
+			},
+			error: function(data){
+				var resp = $(data);
+				$(".calendar-div").html("<span style='color: red'>Error retrieving your calendar.</span>");
+				//alert(resp + 'There was an error trying to retrieve your Calendar');
+			}
+		});
+		
+    }
+	
+	function getGrades(){
+		$(".grade-summary-div").load("https://lms.neumont.edu/grades .course_details");
 	}
+	
+	
+	
+	
 	
 	removeElements();
     addDivs();
-	//auth();
-	getInfo();
+	
+	getAssignments();
+	getCalendar();
+	getGrades();
 });
+

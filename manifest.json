@@ -3,12 +3,13 @@
     "version": "0.1",
 	"manifest_version": 2,
     "description": "The goal of this project is to bring the home page of moodle to canvas.",
+	"options_page": "options.html",
     "content_scripts": [
         {
             "matches":[
                 "https://lms.neumont.edu/"
             ],
-            "js":["js/jquery-1.7.1.min.js", "js/contentscript.js"]
+            "js":["js/jquery-1.7.1.min.js", "js/contentscript.js", "js/handler.js"]
         }
     ],
     "permissions":[
