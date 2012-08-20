@@ -18,20 +18,14 @@ $(document).ready(function() {
 			success: function(data){
 				var response = $(data);
 				var upcoming = response.find(".assignment_list:eq(2)");
+				var firstFive = upcoming.children('div').slice(0,5);
+				firstFive.children('h2').remove();
+				firstFive.find("div.move").remove();
+				firstFive.find("div.links").remove();
+				firstFive.find("div.details").remove();
+				firstFive.find("div.content").append('<hr>');
 				
-				upcoming.children('h2').remove();
-				upcoming.find("div.move").remove();
-				upcoming.find("div.links").remove();
-				upcoming.find("div.details").remove();
-				upcoming.find("div.content").append('<hr>');
-				
-				var firstFive = upcoming.children('div:eq(5)');
-				
-				if(firstFive.length == 0){
-					$(".assignment-summary-div").html(upcoming);
-				}else{
-					$(".assignment-summary-div").html(firstFive);
-				}
+				$(".assignment-summary-div").html(firstFive);
 			},
 			error: function(data){
 				var resp = $(data);
