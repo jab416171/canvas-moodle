@@ -16,9 +16,6 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'GET',
 			url: 'https://lms.neumont.edu/assignments',
-			data:{
-				'Authorization': key
-			},
 			success: function(data){
 				var response = $(data);
 				var upcoming = response.find(".assignment_list:eq(2)");
@@ -27,7 +24,6 @@ $(document).ready(function() {
 			error: function(data){
 				var resp = $(data);
 				$(".assignment-summary-div").html("<h2>Upcoming Assignments</h2><span style='color: red'>Error retrieving your assignments.</span>");
-				//alert(resp + 'There was an error trying to retrieve your assignments');
 			}
 		});
 		
@@ -38,9 +34,6 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'GET',
 			url: 'https://lms.neumont.edu/calendar',
-			data:{
-				'Authorization': key
-			},
 			success: function(data){
 				var response = $(data);
 				var upcoming = response.find(".mini_month");
@@ -49,7 +42,6 @@ $(document).ready(function() {
 			error: function(data){
 				var resp = $(data);
 				$(".calendar-div").html("<span style='color: red'>Error retrieving your calendar.</span>");
-				//alert(resp + 'There was an error trying to retrieve your Calendar');
 			}
 		});
 		
@@ -58,10 +50,6 @@ $(document).ready(function() {
 	function getGrades(){
 		$(".grade-summary-div").load("https://lms.neumont.edu/grades .course_details");
 	}
-	
-	
-	
-	
 	
 	removeElements();
     addDivs();
