@@ -6,7 +6,7 @@ $(document).ready(function() {
 	}
 	
 	function addDivs(){
-		$("aside#right-side").prepend('<div id="demo" class="events_list"><div class="assignment-summary-div"></div></div>');
+		$("aside#right-side").prepend('<div class="events_list"><h2>Upcoming Assignments</h2><div class="assignment-summary-div"></div></div>');
 		$("aside#right-side").prepend('<div class="events_list"><h2>Grade Summary</h2><div class="grade-summary-div"></div></div>');
 		$("aside#right-side").prepend('<div class="calendar"><h2>Calendar</h2><div class="calendar-div"></div></div>');
 	}
@@ -19,11 +19,29 @@ $(document).ready(function() {
 			success: function(data){
 				var response = $(data);
 				var upcoming = response.find(".assignment_list:eq(2)");
-				$(".assignment-summary-div").html(upcoming);
+				
+				upcoming.children('h2').remove();
+				upcoming.find("div.move").remove();
+				upcoming.find("div.links").remove();
+				upcoming.find("div.details").remove();
+				upcoming.find("div.content").append('<hr>');
+				
+				//console.log(upcoming);
+				
+				var firstFive = upcoming.children('div:eq(5)');
+				
+				//console.log("----------------------------------------");
+				//console.log(firstFive);
+				
+				if(firstFive.length == 0){
+					$(".assignment-summary-div").html(upcoming);
+				}else{
+					$(".assignment-summary-div").html(firstFive);
+				}
 			},
 			error: function(data){
 				var resp = $(data);
-				$(".assignment-summary-div").html("<h2>Upcoming Assignments</h2><span style='color: red'>Error retrieving your assignments.</span>");
+				$(".assignment-summary-div").html("<span style='color: red'>Error retrieving your assignments.</span>");
 			}
 		});
 		
@@ -54,8 +72,8 @@ $(document).ready(function() {
 	removeElements();
     addDivs();
 	
-	getAssignments();
 	getCalendar();
 	getGrades();
+	getAssignments();
 });
 
