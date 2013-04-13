@@ -3,7 +3,6 @@
 	"description": "Simplifying your life, with just a simple install.",
     "version": "1.0",
 	"manifest_version": 2,
-	"update_url": "https://raw.github.com/jab416171/canvas-moodle/master/updates.xml",
 	"icons" : {
             "128": "res/128v2.png"
         },
