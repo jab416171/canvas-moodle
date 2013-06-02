@@ -79,7 +79,6 @@ $(document).ready(function() {
 
 				clearInterval(checkIfAssideHasLoaded); 
 			}
-			console.log('magic');
 		}, 50);
 	}())
 });
