@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
 	function removeElements(){
 		$("aside#right-side").children('div').remove();
 		$("aside#right-side").children('h2').remove();
@@ -66,11 +67,19 @@ $(document).ready(function() {
 		});
 	}
 	
-	removeElements();
-    addDivs();
-	
-	getCalendar();
-	getGrades();
-	getAssignments();
+	removeElements(); 
+	(function(){
+		var checkIfAssideHasLoaded = setInterval(function() {
+			if ( $('ul.events').length ) {
+				removeElements();
+			    addDivs();
+				getCalendar();
+				getGrades();
+				getAssignments();
+
+				clearInterval(checkIfAssideHasLoaded); 
+			}
+		}, 50);
+	}())
 });
 
