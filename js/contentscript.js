@@ -20,7 +20,7 @@ $(document).ready(function() {
     	$('#assignload').show();
 		$.ajax({
 			type: 'GET',
-			url: 'https://lms.neumont.edu/assignments',
+			url: '/assignments',
 			success: function(data){
 				var response = $(data);
 				var upcoming = response.find("div.events_list");
@@ -45,7 +45,7 @@ $(document).ready(function() {
 		$('#calload').show();
 		$.ajax({
 			type: 'GET',
-			url: 'https://lms.neumont.edu/calendar',
+			url: '/calendar',
 			success: function(data){
 				var response = $(data);
 				var cal = response.find(".mini_month");
@@ -67,7 +67,7 @@ $(document).ready(function() {
 		$('gradeload').show();
 		$.ajax({
 			type: 'GET',
-			url: 'https://lms.neumont.edu/grades',
+			url: '/grades',
 			success: function(data){
 				var response = $(data);
 				var grades = response.find(".course_details");
