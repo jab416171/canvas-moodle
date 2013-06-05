@@ -9,9 +9,10 @@
     "content_scripts": [
         {
             "matches":[
+                "https://*.instructure.com/",
                 "https://lms.neumont.edu/"
             ],
-            "js":["js/jquery-1.7.1.min.js", "js/contentscript.js"]
+            "js":["js/jquery.min.js", "js/contentscript.js"]
         }
     ],
     "permissions":[
